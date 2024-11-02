@@ -1,28 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
+import logo from '../assets/ducoe.jpg';
+import axios from 'axios';
 
 function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
   return (
-    <div className='bg-gray-950 text-white h-screen flex flex-col justify-center items-center'>
-      <h1 className='text-4xl font-bold mb-6'>Login</h1>
-      <form className='bg-gray-800 p-8 rounded-lg shadow-lg flex flex-col gap-6 w-80'>
-        <input
-          type="text"
-          className='bg-transparent border-2 border-gray-600 text-white p-3 rounded-md focus:outline-none focus:border-blue-400'
-          placeholder='Username'
-        />
-        <input
-          type="password"
-          className='bg-transparent border-2 border-gray-600 text-white p-3 rounded-md focus:outline-none focus:border-blue-400'
-          placeholder='Password'
-        />
-        <button className='bg-blue-600 hover:bg-blue-700 transition duration-200 p-3 rounded-md text-white font-semibold'>
-          Login
-        </button>
-      </form>
-      <p className='mt-4 text-gray-400'>
-        Don't have an account? 
-        <a href="/register" className='text-blue-400 hover:underline ml-1'>Register</a>
-      </p>
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 py-6 sm:py-12">
+      <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-8">
+        <img src={logo} alt="Logo" className="w-64 h-auto rounded-xl object-contain mb-4 sm:mb-0" />
+        <div className="relative py-3 sm:w-96">
+          <span className="text-2xl font-light">Login to your account</span>
+          <div className="mt-4 bg-white shadow-md rounded-lg text-left">
+            <div className="h-2 bg-blue-400 rounded-t-md"></div>
+            <div className="px-8 py-6">
+              <label className="block font-semibold">Username</label>
+              <input
+                type="text"
+                placeholder="Username"
+                className="border-2 border-blue-300 w-full h-10 px-3 py-2 mt-2 hover:outline-none focus:outline-none focus:ring-blue-500 focus:ring-1 rounded-md"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <label className="block mt-3 font-semibold">Password</label>
+              <input
+                type="password"
+                placeholder="Password"
+                className="border-2 border-blue-300 w-full h-10 px-3 py-2 mt-2 hover:outline-none focus:outline-none focus:ring-blue-500 focus:ring-1 rounded-md"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div className="flex justify-between items-baseline mt-4">
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition duration-200"
+                >
+                  Login
+                </button>
+                <a href="#" className="text-sm text-blue-500 hover:underline">Forgot password?</a>
+
+
+              </div>
+              <a href="#" className="text-sm text-blue-500 mt-4 hover:underline">Don't have an account? Register</a>
+              
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
